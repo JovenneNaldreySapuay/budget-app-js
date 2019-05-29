@@ -55,11 +55,7 @@ var budgetController = (function() {
     
     return {
         addItem: function(type, des, val) {
-            var newItem, ID;
-            
-            //[1 2 3 4 5], next ID = 6
-            //[1 2 4 6 8], next ID = 9
-            // ID = last ID + 1
+            var newItem, ID;           
             
             // Create new ID
             if (data.allItems[type].length > 0) {
@@ -85,11 +81,6 @@ var budgetController = (function() {
         
         deleteItem: function(type, id) {
             var ids, index;
-            
-            // id = 6
-            //data.allItems[type][id];
-            // ids = [1 2 4  8]
-            //index = 3
             
             ids = data.allItems[type].map(function(current) {
                 return current.id;
@@ -125,15 +116,6 @@ var budgetController = (function() {
         
         calculatePercentages: function() {
             
-            /*
-            a=20
-            b=10
-            c=40
-            income = 100
-            a=20/100=20%
-            b=10/100=10%
-            c=40/100=40%
-            */
             
             data.allItems.exp.forEach(function(cur) {
                cur.calcPercentage(data.totals.inc);
@@ -166,8 +148,6 @@ var budgetController = (function() {
 })();
 
 
-
-
 // UI CONTROLLER
 var UIController = (function() {
     
@@ -190,14 +170,6 @@ var UIController = (function() {
     
     var formatNumber = function(num, type) {
         var numSplit, int, dec, type;
-        /*
-            + or - before number
-            exactly 2 decimal points
-            comma separating the thousands
-
-            2310.4567 -> + 2,310.46
-            2000 -> + 2,000.00
-            */
 
         num = Math.abs(num);
         num = num.toFixed(2);
@@ -317,8 +289,6 @@ var UIController = (function() {
             var now, months, month, year;
             
             now = new Date();
-            //var christmas = new Date(2016, 11, 25);
-            
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             month = now.getMonth();
             
@@ -349,9 +319,6 @@ var UIController = (function() {
     };
     
 })();
-
-
-
 
 // GLOBAL APP CONTROLLER
 var controller = (function(budgetCtrl, UICtrl) {
